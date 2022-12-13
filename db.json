@@ -1,49 +1,34 @@
 {
     "events": [
         {
-            "id": 5928101,
-            "user": {
-                "id": "abc123",
-                "name": "Adam"
-            },
+            "id": 123,
             "category": "animal welfare",
-            "organizer": "Adam",
-            "title": "Cat Cabaret",
-            "description": "Yay felines!",
+            "title": "Cat Adoption Day",
+            "description": "Find your new feline friend at this event.",
             "location": "Meow Town",
-            "date": "2019-01-03T21:54:00.000Z",
-            "time": "2:00",
-            "attendees": []
+            "date": "January 28, 2022",
+            "time": "12:00",
+            "organizer": "Kat Laydee"
         },
         {
-            "id": 8419988,
-            "user": {
-                "id": "abc123",
-                "name": "Adam"
-            },
-            "category": "animal welfare",
-            "organizer": "Adam",
-            "title": "Kitty Cluster",
-            "description": "Yay cats!",
-            "location": "Catlandia",
-            "date": "2019-01-31T22:09:00.000Z",
-            "time": "7:00",
-            "attendees": []
+            "id": 456,
+            "category": "food",
+            "title": "Community Gardening",
+            "description": "Join us as we tend to the community edible plants.",
+            "location": "Flora City",
+            "date": "March 14, 2022",
+            "time": "10:00",
+            "organizer": "Fern Pollin"
         },
         {
-            "id": 4582797,
-            "user": {
-                "id": "abc123",
-                "name": "Adam"
-            },
-            "category": "animal welfare",
-            "organizer": "Adam",
-            "title": "Puppy Parade",
-            "description": "Yay pups!",
-            "location": "Puptown ",
-            "date": "2019-02-02T23:27:00.000Z",
-            "time": "1:00",
-            "attendees": []
+            "id": 789,
+            "category": "sustainability",
+            "title": "Beach Cleanup",
+            "description": "Help pick up trash along the shore.",
+            "location": "Playa Del Carmen",
+            "date": "July 22, 2022",
+            "time": "11:00",
+            "organizer": "Carey Wales"
         }
     ]
 }
