@@ -8,7 +8,7 @@
 <script>
 // @ is an alias to /src
 import EventCard from '@/components/EventCard.vue'
-import axios from 'axios'
+import EventService from '@/services/EventService.js'
 
 export default {
   name: 'EventList',
@@ -21,8 +21,7 @@ export default {
     }
   },
   created() {
-    const url = 'https://my-json-server.typicode.com/lewpiotr1701/vue3-CLI-events-app/events'
-    axios.get(url)
+    EventService.getEvents()
       .then(res => {
         this.events = res.data
       })
