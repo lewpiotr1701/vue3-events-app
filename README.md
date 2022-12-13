@@ -20,11 +20,11 @@ npm run build
 npm run lint
 ```
 
-### In order to access our mock server, we’ll go to the url:
+### In order to access db.json mock server, go to the url:
 ```
 https://my-json-server.typicode.com/lewpiotr1701/vue3-CLI-events-app
 
-Adding ‘/events’ to the end of the URL allows us to target the events data specifically.
+Adding ‘/events’ to the end of the URL allows to target the events data specifically.
 
 To make API calls we'll be using the Axios library.
 ```
