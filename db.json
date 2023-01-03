@@ -29,6 +29,26 @@
             "date": "July 22, 2022",
             "time": "11:00",
             "organizer": "Carey Wales"
+        },
+        {
+            "id": 4,
+            "category": "bla bla bla bla",
+            "title": "bla bla bla bla",
+            "description": "bla bla bla bla",
+            "location": "bla bla bla bla",
+            "date": "2023",
+            "time": "00:00",
+            "organizer": "Galak Pizza"
+        },
+        {
+            "id": 5,
+            "category": "bla bla bla bla bla",
+            "title": "bla bla bla bla bla",
+            "description": "bla bla bla bla bla",
+            "location": "bla bla bla bla bla",
+            "date": "2023",
+            "time": "00:00",
+            "organizer": "Galak Pizza"
         }
     ]
 }
