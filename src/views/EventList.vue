@@ -23,7 +23,7 @@ export default {
   components: {
     EventCard
   },
-  props: ['page'],
+  props: ['page'], // prop received from the router/index.js
   data() {
     return {
       events: null,
@@ -33,7 +33,7 @@ export default {
   created() {
     watchEffect(() => {
       this.events = null
-      EventService.getEvents(2, this.page)
+      EventService.getEvents(2, this.page) // pass 2 events per page and current page
         .then(res => {
           this.events = res.data
           this.totalEvents = res.headers['x-total-count']
@@ -45,7 +45,9 @@ export default {
   },
   computed: {
     hasNextPage() {
+      // Calculate total pages
       const totalPages = Math.ceil(this.totalEvents / 2)
+      // Check if the current page is less than the total pages
       return this.page < totalPages
     }
   }
