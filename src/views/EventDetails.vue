@@ -11,7 +11,7 @@ import EventService from '@/services/EventService.js'
 
 export default {
   name: 'EventDetails',
-  props: ['id', 'dupa'],
+  props: ['id'],
   data() {
     return {
       event: null,
