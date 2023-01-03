@@ -22,7 +22,7 @@ npm run lint
 
 ### In order to access db.json mock server, go to the url:
 
-[my-json-server]https://my-json-server.typicode.com/lewpiotr1701/vue3-CLI-events-app
+https://my-json-server.typicode.com/lewpiotr1701/vue3-CLI-events-app
 
 Adding ‘/events’ to the end of the URL allows to target the events data specifically.
 
