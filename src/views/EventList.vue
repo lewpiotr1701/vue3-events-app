@@ -7,17 +7,19 @@
       <router-link id="page-prev" :to="{ name: 'EventList', query: { page: page - 1 } }" rel="prev"
         v-if="page != 1">&#60; Previous</router-link>
 
-      <ul class="pagination__numbers">
-        <li class="pagination__item" v-for="n in totalPages" :key="n">
-          <router-link :to="{ name: 'EventList', query: { page: n } }">
-            {{ n }}&nbsp;
-          </router-link>
-        </li>
-      </ul>
-
       <router-link id="page-next" :to="{ name: 'EventList', query: { page: page + 1 } }" rel="next"
         v-if="hasNextPage">Next &#62;</router-link>
+
     </div>
+
+    <ul class="pagination__numbers">
+      <li class="pagination__item" v-for="n in totalPages" :key="n" :class="[n === this.page ? 'current-page' : '']">
+        <router-link :to="{ name: 'EventList', query: { page: n } }">
+          {{ n }}&nbsp;
+        </router-link>
+      </li>
+    </ul>
+
   </div>
 </template>
 
@@ -68,7 +70,7 @@ export default {
 }
 </script>
 
-<style scoped >
+<style scoped>
 .events {
   display: flex;
   flex-direction: column;
@@ -99,7 +101,15 @@ export default {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  text-align: center;
+}
+
+.pagination__numbers a {
+  text-decoration: none;
+  color: #2c3e50;
+}
+
+.pagination__item.current-page a {
+  color: #42b983;
 }
 
 .pagination__item {
