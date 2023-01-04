@@ -15,10 +15,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-a {
-    text-decoration: none;
-    color: #2c3e50;
-}
-</style>
