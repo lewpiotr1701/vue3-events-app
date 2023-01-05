@@ -7,6 +7,9 @@ import EventEdit from '../views/event/Edit.vue'
 import AboutView from '../views/AboutView.vue'
 import NotFound from '../views/NotFound.vue'
 import NetworkError from '../views/NetworkError.vue'
+import NProgress from 'nprogress'
+import EventService from '@/services/EventService.js'
+import GStore from '@/store'
 
 const routes = [
   {
@@ -20,6 +23,26 @@ const routes = [
     name: 'EventLayout',
     props: true,
     component: EventLayout,
+    beforeEnter: to => {
+      return EventService.getEvent(to.params.id)
+        .then(res => {
+          GStore.event = res.data
+        })
+        .catch(err => {
+          console.log(err)
+
+          // If the event does not exist, load 404
+          if (err.response && err.response.status === 404) {
+            return {
+              name: '404Resource',
+              params: { resource: 'event' }
+            }
+            // Otherwise assume network error
+          } else {
+            return { name: 'NetworkError' }
+          }
+        })
+    },
     children: [
       {
         path: '',
@@ -71,6 +94,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+// Start the progress bar before navigation
+router.beforeEach(() => {
+  NProgress.start()
+})
+
+// Finish the progress bar after navigation
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router

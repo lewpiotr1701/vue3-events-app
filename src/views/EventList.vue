@@ -27,7 +27,6 @@
 // @ is an alias to /src
 import EventCard from '@/components/EventCard.vue'
 import EventService from '@/services/EventService.js'
-import NProgress from 'nprogress'
 
 export default {
   name: 'EventList',
@@ -42,7 +41,6 @@ export default {
     }
   },
   beforeRouteEnter(routeTo, routeFrom, next) {
-    NProgress.start()
     EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
       .then(res => {
         // Continue routing and once component (comp) is loaded, set these values
@@ -54,22 +52,17 @@ export default {
       .catch(() => {
         next({ name: 'NetworkError' })
       })
-      .finally(() => {
-        NProgress.done()
-      })
   },
-  beforeRouteUpdate(routeTo, routeFrom, next) {
-    NProgress.start()
-    EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
+  beforeRouteUpdate(routeTo) {
+    // Return the promise so Vue Router knows to wait on the API call
+    // before loading the page
+    return EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
       .then(res => {
         this.events = res.data
         this.totalEvents = res.headers['x-total-count']
       })
       .catch(() => {
-        next({ name: 'NetworkError' })
-      })
-      .finally(() => {
-        NProgress.done()
+        return { name: 'NetworkError' }
       })
   },
   computed: {
