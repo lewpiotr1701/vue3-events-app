@@ -24,8 +24,6 @@ npm run lint
 
 https://my-json-server.typicode.com/lewpiotr1701/vue3-CLI-events-app
 
-Adding ‘/events’ to the end of the URL allows to target the events data specifically.
-
 To make API calls we'll be using the Axios library.
 
 
