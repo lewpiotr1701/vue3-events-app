@@ -58,7 +58,7 @@ export default {
         NProgress.done()
       })
   },
-  beforeRouteUpdate(routeTo, routeFrom) {
+  beforeRouteUpdate(routeTo, routeFrom, next) {
     NProgress.start()
     EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
       .then(res => {
@@ -66,7 +66,7 @@ export default {
         this.totalEvents = res.headers['x-total-count']
       })
       .catch(() => {
-        return { name: 'NetworkError' }
+        next({ name: 'NetworkError' })
       })
       .finally(() => {
         NProgress.done()
