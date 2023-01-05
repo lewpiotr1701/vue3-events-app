@@ -3,9 +3,9 @@
     <h1>{{ GStore.event.title }}</h1>
 
     <div id="nav">
-      <router-link :to="{ name: 'EventDetails', params: { id } }">Details</router-link>&nbsp;|&nbsp;
-      <router-link :to="{ name: 'EventRegister', params: { id } }">Register</router-link>&nbsp;|&nbsp;
-      <router-link :to="{ name: 'EventEdit', params: { id } }">Edit</router-link>
+      <router-link :to="{ name: 'EventDetails' }">Details</router-link>&nbsp;|&nbsp;
+      <router-link :to="{ name: 'EventRegister' }">Register</router-link>&nbsp;|&nbsp;
+      <router-link :to="{ name: 'EventEdit' }">Edit</router-link>
     </div>
 
     <RouterView :event="GStore.event" />

@@ -57,7 +57,8 @@ const routes = [
       {
         path: 'edit',
         name: 'EventEdit',
-        component: EventEdit
+        component: EventEdit,
+        meta: { requireAuth: true }
       }
     ]
   },
@@ -97,8 +98,26 @@ const router = createRouter({
 })
 
 // Start the progress bar before navigation
-router.beforeEach(() => {
+router.beforeEach((to, from) => {
   NProgress.start()
+
+  const notAuthorized = true
+  if (to.meta.requireAuth && notAuthorized) {
+    GStore.flashMessage =
+      'Sorry, you are not authorized to view this page'
+
+    setTimeout(() => {
+      GStore.flashMessage = ''
+    }, 3000);
+
+    // if there was a previous page
+    if (from.href) {
+      return false // Cancel the navigation
+    } else {
+      return { path: '/' }
+    }
+
+  }
 })
 
 // Finish the progress bar after navigation
