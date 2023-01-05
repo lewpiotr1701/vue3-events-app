@@ -117,11 +117,10 @@ router.beforeEach((to, from) => {
       GStore.flashMessage = ''
     }, 3000);
 
-    // if there was a previous page
-    if (from.href) {
-      return false // Cancel the navigation
-    } else {
-      return { path: '/' }
+    if (from.href) {  // If the navigation came from a prevoius page
+      return false  // Cancel the navigation
+    } else {  // Must be navigationg directly
+      return { path: '/' }  // Pushnavigation to the root route
     }
 
   }
