@@ -1,54 +1,64 @@
 {
-    "events": [
-        {
-            "id": 1,
-            "category": "programming",
-            "title": "meet.js KRK",
-            "description": "Great opportunity to meet other JS developers!",
-            "location": "Cracow",
-            "date": "December 13, 2022",
-            "time": "17:00",
-            "organizer": "Volunteers"
-        },
-        {
-            "id": 2,
-            "category": "food",
-            "title": "Community Gardening",
-            "description": "Join us as we tend to the community edible plants.",
-            "location": "Warsaw",
-            "date": "June 13, 2022",
-            "time": "10:00",
-            "organizer": "Ski"
-        },
-        {
-            "id": 3,
-            "category": "sustainability",
-            "title": "Beach Cleanup",
-            "description": "Help pick up trash along the shore.",
-            "location": "Gdańsk",
-            "date": "July 22, 2022",
-            "time": "11:00",
-            "organizer": "Carey Wales"
-        },
-        {
-            "id": 4,
-            "category": "bla bla bla bla",
-            "title": "bla bla bla bla",
-            "description": "bla bla bla bla",
-            "location": "bla bla bla bla",
-            "date": "2023",
-            "time": "00:00",
-            "organizer": "Galak Pizza"
-        },
-        {
-            "id": 5,
-            "category": "bla bla bla bla bla",
-            "title": "bla bla bla bla bla",
-            "description": "bla bla bla bla bla",
-            "location": "bla bla bla bla bla",
-            "date": "2023",
-            "time": "00:00",
-            "organizer": "Galak Pizza"
-        }
-    ]
+  "events": [
+    {
+      "id": 1,
+      "category": "programming",
+      "title": "meet.js KRK",
+      "description": "Great opportunity to meet other JS developers!",
+      "location": "Cracow",
+      "date": "December 13, 2022",
+      "time": "17:00",
+      "organizer": "Volunteers"
+    },
+    {
+      "id": 2,
+      "category": "food",
+      "title": "Community Gardening",
+      "description": "Join us as we tend to the community edible plants.",
+      "location": "Warsaw",
+      "date": "June 13, 2022",
+      "time": "10:00",
+      "organizer": "Ski"
+    },
+    {
+      "id": 3,
+      "category": "sustainability",
+      "title": "Beach Cleanup",
+      "description": "Help pick up trash along the shore.",
+      "location": "Gdańsk",
+      "date": "July 22, 2022",
+      "time": "11:00",
+      "organizer": "Carey Wales"
+    },
+    {
+      "id": 4,
+      "category": "bla bla bla bla",
+      "title": "bla bla bla bla",
+      "description": "bla bla bla bla",
+      "location": "bla bla bla bla",
+      "date": "2023",
+      "time": "00:00",
+      "organizer": "Galak Pizza"
+    },
+    {
+      "id": 5,
+      "category": "bla bla bla bla bla",
+      "title": "bla bla bla bla bla",
+      "description": "bla bla bla bla bla",
+      "location": "bla bla bla bla bla",
+      "date": "2023",
+      "time": "00:00",
+      "organizer": "Galak Pizza"
+    },
+    {
+      "id": "c59781b8-ceb7-487d-8079-b30875d12f83",
+      "category": "",
+      "title": "Learning Vuex",
+      "description": "Using Vuex when developing Event App",
+      "location": "Kraków",
+      "date": "06.01.2023",
+      "time": "21:49",
+      "organizer": "Kapitan Dupa"
+    }
+  ]
 }
