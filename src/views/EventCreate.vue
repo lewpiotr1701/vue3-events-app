@@ -65,7 +65,13 @@ export default {
   methods: {
     onSubmit() {
       this.event.organizer = this.$store.state.user
+      this.clearForm()
       console.log("Event:", this.event)
+    },
+    clearForm() {
+      for (const property in this.event) {
+        this.event[property] = ''
+      }
     }
   }
 }
