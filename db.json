@@ -59,6 +59,26 @@
       "date": "06.01.2023",
       "time": "21:49",
       "organizer": "Kapitan Dupa"
+    },
+    {
+      "id": "d0a26d6a-afa9-47b5-a618-b0cffb134c61",
+      "category": "",
+      "title": "test",
+      "description": "add a new event to store.state.events",
+      "location": "xxx",
+      "date": "xxx",
+      "time": "0000",
+      "organizer": "Kapitan Dupa"
+    },
+    {
+      "id": "df129279-dfed-4cc0-b7c3-3e19bed40414",
+      "category": "",
+      "title": "test 2",
+      "description": "add event to Vuex state",
+      "location": "xxx",
+      "date": "xxx",
+      "time": "0000",
+      "organizer": "Kapitan Dupa"
     }
   ]
 }

@@ -1,30 +1,27 @@
 <template>
-    <p>Register for the event</p>
-    <button @click="register">Register Me</button>
+  <p>Register for the event</p>
+  <button @click="register">Register Me</button>
 </template>
 
 <script>
 export default {
-    name: 'EventRegister',
-    props: ['event'],
-    inject: ['GStore'],
-    methods: {
-        register() {
-            // Call to API
-            // If registered then redirect to event details
+  name: 'EventRegister',
+  props: ['event'],
+  inject: ['GStore'],
+  methods: {
+    register() {
+      this.GStore.flashMessage =
+        'You are successfully registered for ' + this.event.title
 
-            this.GStore.flashMessage =
-                'You are successfully registered for ' + this.event.title
+      setTimeout(() => {
+        this.GStore.flashMessage = ''
+      }, 3000)
 
-            setTimeout(() => {
-                this.GStore.flashMessage = ''
-            }, 3000)
-
-            this.$router.push({
-                name: 'EventDetails',
-                params: { id: this.event.id }
-            })
-        }
+      this.$router.push({
+        name: 'EventDetails',
+        params: { id: this.event.id }
+      })
     }
+  }
 }
 </script>

@@ -1,4 +1,5 @@
 <template>
+
   <h1>Create an event</h1>
 
   <div class="form-container">
@@ -42,6 +43,7 @@ import { v4 as uuidv4 } from 'uuid'
 import EventService from '@/services/EventService.js'
 
 export default {
+  inject: ['GStore'],
   data() {
     return {
       categories: [
@@ -67,11 +69,16 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.event.id = uuidv4()
-      this.event.organizer = this.$store.state.user
-      EventService.postEvent(this.event)
-        .then(res => {
-          // add event to Vuex state
+      const event = {
+        ...this.event,
+        id: uuidv4(),
+        organizer: this.$store.state.user
+      }
+
+      EventService.postEvent(event)
+        .then(() => {
+          this.$store.commit('ADD_EVENT', event)
+          this.showMessage()
         })
         .catch(err => {
           console.log(err)
@@ -81,6 +88,14 @@ export default {
       for (const property in this.event) {
         this.event[property] = ''
       }
+    },
+    showMessage() {
+      this.GStore.flashMessage =
+        'You are successfully added a new event ' + this.event.title
+
+      setTimeout(() => {
+        this.GStore.flashMessage = ''
+      }, 3000);
     }
   }
 }
