@@ -6,7 +6,6 @@ export default createStore({
     user: 'Kapitan Dupa',
     perPage: 2,
     totalEvents: 0,
-    isError: false,
     events: []
   },
   mutations: {
@@ -30,17 +29,17 @@ export default createStore({
           console.log(err)
         })
     },
-    fetchEvents({ commit, state }, currentPage) {
-      state.isError = false
+    async fetchEvents({ commit, state }, currentPage) {
       const perPage = state.perPage
-      EventService.getEvents(perPage, currentPage)
+      console.log('before fetchEvents');
+      await EventService.getEvents(perPage, currentPage)
         .then(res => {
+          console.log('after fetchEvents')
           commit('SET_EVENTS', res.data)
           commit('SET_TOTAL_EVENTS', res.headers['x-total-count'])
         })
         .catch(err => {
           console.log(err)
-          state.isError = true
         })
     }
   },

@@ -113,7 +113,10 @@ const router = createRouter({
 
 // Start the progress bar before navigation
 router.beforeEach((to, from) => {
+  console.log('beforeEach before start()')
   NProgress.start()
+  console.log('beforeEach after start()')
+
 
   const notAuthorized = true
   if (to.meta.requireAuth && notAuthorized) {
@@ -135,7 +138,10 @@ router.beforeEach((to, from) => {
 
 // Finish the progress bar after navigation
 router.afterEach(() => {
+  console.log('afterEach before done()')
   NProgress.done()
+  console.log('afterEach after done()')
+
 })
 
 export default router

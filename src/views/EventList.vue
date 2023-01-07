@@ -26,6 +26,7 @@
 <script>
 // @ is an alias to /src
 import EventCard from '@/components/EventCard.vue'
+import store from '@/store/index.js'
 
 export default {
   name: 'EventList',
@@ -33,34 +34,11 @@ export default {
     EventCard
   },
   props: ['page'], // prop received from the router/index.js using Props Function Mode
-  beforeRouteEnter(routeTo, routeFrom, next) {
-    // EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
-    //   .then(res => {
-    //     // Continue routing and once component (comp) is loaded, set these values
-    //     next(comp => {
-    //       comp.events = res.data
-    //       comp.totalEvents = res.headers['x-total-count']
-    //     })
-    //   })
-    //   .catch(() => {
-    //     next({ name: 'NetworkError' })
-    //   })
-    next(vm => {
-      vm.$store.dispatch('fetchEvents', parseInt(routeTo.query.page) || 1)
-    })
+  async beforeRouteEnter(routeTo, routeFrom) {
+    await store.dispatch('fetchEvents', parseInt(routeTo.query.page) || 1)
   },
-  beforeRouteUpdate(routeTo) {
-    // Return the promise so Vue Router knows to wait on the API call
-    // before loading the page
-    // return EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
-    //   .then(res => {
-    //     this.events = res.data
-    //     this.totalEvents = res.headers['x-total-count']
-    //   })
-    //   .catch(() => {
-    //     return { name: 'NetworkError' }
-    //   })
-    return this.$store.dispatch('fetchEvents', parseInt(routeTo.query.page) || 1)
+  async beforeRouteUpdate(routeTo) {
+    await this.$store.dispatch('fetchEvents', parseInt(routeTo.query.page) || 1)
   },
   computed: {
     events() {
