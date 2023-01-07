@@ -26,7 +26,6 @@
 <script>
 // @ is an alias to /src
 import EventCard from '@/components/EventCard.vue'
-import EventService from '@/services/EventService.js'
 
 export default {
   name: 'EventList',
@@ -34,46 +33,57 @@ export default {
     EventCard
   },
   props: ['page'], // prop received from the router/index.js using Props Function Mode
-  data() {
-    return {
-      events: null,
-      totalEvents: 0,
-    }
-  },
   beforeRouteEnter(routeTo, routeFrom, next) {
-    EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
-      .then(res => {
-        // Continue routing and once component (comp) is loaded, set these values
-        next(comp => {
-          comp.events = res.data
-          comp.totalEvents = res.headers['x-total-count']
-        })
-      })
-      .catch(() => {
-        next({ name: 'NetworkError' })
-      })
+    // EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
+    //   .then(res => {
+    //     // Continue routing and once component (comp) is loaded, set these values
+    //     next(comp => {
+    //       comp.events = res.data
+    //       comp.totalEvents = res.headers['x-total-count']
+    //     })
+    //   })
+    //   .catch(() => {
+    //     next({ name: 'NetworkError' })
+    //   })
+    next(vm => {
+      vm.$store.dispatch('fetchEvents', parseInt(routeTo.query.page) || 1)
+    })
   },
   beforeRouteUpdate(routeTo) {
     // Return the promise so Vue Router knows to wait on the API call
     // before loading the page
-    return EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
-      .then(res => {
-        this.events = res.data
-        this.totalEvents = res.headers['x-total-count']
-      })
-      .catch(() => {
-        return { name: 'NetworkError' }
-      })
+    // return EventService.getEvents(2, parseInt(routeTo.query.page) || 1) // pass 2 events per page and current page
+    //   .then(res => {
+    //     this.events = res.data
+    //     this.totalEvents = res.headers['x-total-count']
+    //   })
+    //   .catch(() => {
+    //     return { name: 'NetworkError' }
+    //   })
+    return this.$store.dispatch('fetchEvents', parseInt(routeTo.query.page) || 1)
   },
   computed: {
+    events() {
+      return this.$store.state.events
+    },
+    totalEvents() {
+      return this.$store.state.totalEvents
+    },
     hasNextPage() {
-      // Calculate total pages
-      const totalPages = Math.ceil(this.totalEvents / 2)
+      const totalEvents = this.totalEvents
+      const totalPages = Math.ceil(totalEvents / 2)
       // Check if the current page is less than the total pages
       return this.page < totalPages
     },
     totalPages() {
-      return Math.ceil(this.totalEvents / 2)
+      const totalEvents = this.totalEvents
+      return Math.ceil(totalEvents / 2)
+    },
+    perPage() {
+      return this.$store.state.perPage
+    },
+    isError() {
+      return this.$store.state.isError
     }
   }
 }
