@@ -69,16 +69,6 @@
       "date": "xxx",
       "time": "0000",
       "organizer": "Kapitan Dupa"
-    },
-    {
-      "id": "df129279-dfed-4cc0-b7c3-3e19bed40414",
-      "category": "",
-      "title": "test 2",
-      "description": "add event to Vuex state",
-      "location": "xxx",
-      "date": "xxx",
-      "time": "0000",
-      "organizer": "Kapitan Dupa"
     }
   ]
 }

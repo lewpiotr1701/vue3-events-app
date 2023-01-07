@@ -78,10 +78,13 @@ export default {
       EventService.postEvent(event)
         .then(() => {
           this.$store.commit('ADD_EVENT', event)
-          this.showMessage()
         })
         .catch(err => {
           console.log(err)
+        })
+        .finally(() => {
+          this.showMessage()
+          this.clearForm()
         })
     },
     clearForm() {
