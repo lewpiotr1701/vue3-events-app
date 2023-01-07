@@ -69,6 +69,16 @@
       "date": "xxx",
       "time": "0000",
       "organizer": "Kapitan Dupa"
+    },
+    {
+      "id": "e2303937-56ba-4f6e-a1b6-c3ad58fdfd53",
+      "category": "",
+      "title": "test navigation",
+      "description": "navigate to the EventDetails",
+      "location": "",
+      "date": "",
+      "time": "",
+      "organizer": "Kapitan Dupa"
     }
   ]
 }
