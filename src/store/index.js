@@ -26,18 +26,21 @@ export default createStore({
         .then(() => {
           commit('ADD_EVENT', event)
         })
-        .catch(() => {
-          router.push({ name: 'NetworkError' })
+        .catch((err) => {
+          console.log(err)
         })
     },
     async fetchEvents({ commit, state }, currentPage) {
       const perPage = state.perPage
-      console.log('before fetchEvents');
+
       await EventService.getEvents(perPage, currentPage)
         .then(res => {
-          console.log('after fetchEvents')
-          commit('SET_EVENTS', res.data)
-          commit('SET_TOTAL_EVENTS', res.headers['x-total-count'])
+          if (res.data.length !== 0) {
+            commit('SET_EVENTS', res.data)
+            commit('SET_TOTAL_EVENTS', res.headers['x-total-count'])
+          } else {
+            router.push({ name: '404Resource', params: { resource: 'page' } })
+          }
         })
         .catch(() => {
           router.push({ name: 'NetworkError' })
