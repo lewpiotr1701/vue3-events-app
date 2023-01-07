@@ -40,7 +40,6 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid'
-import EventService from '@/services/EventService.js'
 
 export default {
   inject: ['GStore'],
@@ -75,17 +74,7 @@ export default {
         organizer: this.$store.state.user
       }
 
-      EventService.postEvent(event)
-        .then(() => {
-          this.$store.commit('ADD_EVENT', event)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-        .finally(() => {
-          this.showMessage()
-          this.clearForm()
-        })
+      this.$store.dispatch('createEvent', event)
     },
     clearForm() {
       for (const property in this.event) {
