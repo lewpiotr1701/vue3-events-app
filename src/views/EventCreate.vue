@@ -73,7 +73,6 @@ export default {
         id: uuidv4(),
         organizer: this.$store.state.user
       }
-
       this.$store.dispatch('createEvent', event)
     },
     clearForm() {
