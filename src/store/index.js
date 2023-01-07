@@ -1,4 +1,4 @@
-import { createStore, storeKey } from 'vuex'
+import { createStore } from 'vuex'
 import EventService from '@/services/EventService.js'
 import router from '@/router'
 
@@ -22,12 +22,12 @@ export default createStore({
   },
   actions: {
     createEvent({ commit }, event) {
-      EventService.postEvent(event)
+      return EventService.postEvent(event)
         .then(() => {
           commit('ADD_EVENT', event)
         })
-        .catch(() => {
-          router.push({ name: 'NetworkError' })
+        .catch(err => {
+          throw (err)
         })
     },
     async fetchEvents({ commit, state }, currentPage) {

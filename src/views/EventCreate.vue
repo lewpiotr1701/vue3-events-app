@@ -75,16 +75,15 @@ export default {
       }
       this.$store.dispatch('createEvent', event)
         .then(() => {
+          this.showMessage()
           this.$router.push({
             name: 'EventDetails',
             params: { id: event.id }
           })
         })
-    },
-    clearForm() {
-      for (const property in this.event) {
-        this.event[property] = ''
-      }
+        .catch(() => {
+          this.$router.push({ name: 'NetworkError' })
+        })
     },
     showMessage() {
       this.GStore.flashMessage =
