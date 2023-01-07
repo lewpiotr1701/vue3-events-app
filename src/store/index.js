@@ -1,5 +1,6 @@
-import { createStore } from 'vuex'
+import { createStore, storeKey } from 'vuex'
 import EventService from '@/services/EventService.js'
+import router from '@/router'
 
 export default createStore({
   state: {
@@ -25,8 +26,8 @@ export default createStore({
         .then(() => {
           commit('ADD_EVENT', event)
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          router.push({ name: 'NetworkError' })
         })
     },
     async fetchEvents({ commit, state }, currentPage) {
@@ -38,8 +39,8 @@ export default createStore({
           commit('SET_EVENTS', res.data)
           commit('SET_TOTAL_EVENTS', res.headers['x-total-count'])
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          router.push({ name: 'NetworkError' })
         })
     }
   },
