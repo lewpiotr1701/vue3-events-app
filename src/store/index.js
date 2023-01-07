@@ -26,8 +26,8 @@ export default createStore({
         .then(() => {
           commit('ADD_EVENT', event)
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
+          router.push({ name: 'NetworkError' })
         })
     },
     async fetchEvents({ commit, state }, currentPage) {
