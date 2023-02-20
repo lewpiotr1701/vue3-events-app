@@ -5,7 +5,7 @@
 npm install
 ```
 
-### Run local JSON Server in order to using all REST API methods
+### Run local JSON Server in order to use all REST API methods
 Change URL in EventService.js to baseURL: 'http://localhost:3000'
 ```
 npm install -g json-server
