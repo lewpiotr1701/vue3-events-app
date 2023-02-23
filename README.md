@@ -1,10 +1,13 @@
 # Events App
 
+Simple Event app that allows user to fetch, add, edit events.
+
 ## Project Specification
 
-- Fetch events using Axios
-- Create, edit and delete event using Axios
+- Fetch, create, edit and delete event using Axios
 - Pagination
+- Vuex
+- Vue Router
 
 ## Project setup
 ```
