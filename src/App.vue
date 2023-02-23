@@ -88,7 +88,7 @@ input {
 }
 
 input[type=text] {
-  padding: 0px 10px;
+  padding: 4px 10px;
 }
 
 input:focus {
@@ -115,6 +115,10 @@ input:focus {
   flex-direction: column;
   align-items: center;
   margin-bottom: 10%;
+}
+
+select {
+  margin: 25px 0 25px 0;
 }
 
 select:focus {

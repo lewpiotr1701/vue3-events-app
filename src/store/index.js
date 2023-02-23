@@ -9,6 +9,11 @@ export default createStore({
     totalEvents: 0,
     events: []
   },
+  getters: {
+    getUser(state) {
+      return state.user
+    }
+  },
   mutations: {
     ADD_EVENT(state, event) {
       state.events.push(event)

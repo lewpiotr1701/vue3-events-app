@@ -1,36 +1,34 @@
 <template>
-
   <h1>Create an event</h1>
 
   <div class="form-container">
 
     <form @submit.prevent="onSubmit">
-      <label>Select a category: </label>
-      <select v-model="event.category">
-        <option v-for="option in categories" :value="option" :key="option" :selected="option === event.category">
-          {{ option }}
-        </option>
-      </select>
 
-      <h3>Name & describe your event</h3>
+      <BaseSelect :options="categories" v-model="event.category" label="Select a category: " />
 
-      <label>Title</label>
-      <input v-model="event.title" type="text" placeholder="Title">
+      <fieldset>
+        <legend>
+          <h3>Name & describe your event</h3>
+        </legend>
+        <BaseInput v-model="event.title" label="Title" type="text" />
+        <BaseInput v-model="event.description" label="Description" type="text" />
+      </fieldset>
 
-      <label>Description</label>
-      <input v-model="event.description" type="text" placeholder="Description" />
+      <fieldset>
+        <legend>
+          <h3>Where is your event?</h3>
+        </legend>
+        <BaseInput v-model="event.location" label="Location" type="text" />
+      </fieldset>
 
-      <h3>Where is your event?</h3>
-
-      <label>Location</label>
-      <input v-model="event.location" type="text" placeholder="Location" />
-
-      <h3>When is your event?</h3>
-      <label>Date</label>
-      <input v-model="event.date" type="text" placeholder="Date" />
-
-      <label>Time</label>
-      <input v-model="event.time" type="text" placeholder="Time" />
+      <fieldset>
+        <legend>
+          <h3>When is your event?</h3>
+        </legend>
+        <BaseInput v-model="event.date" label="Date" type="text" />
+        <BaseInput v-model="event.time" label="Time" type="text" />
+      </fieldset>
 
       <button type="submit">Submit</button>
     </form>
@@ -39,60 +37,73 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
+import UniqueID from '@/services/UniqueID'
 
 export default {
-  inject: ['GStore'],
+  inject: ["GStore"],
   data() {
     return {
       categories: [
-        'sustainability',
-        'nature',
-        'animal welfare',
-        'housing',
-        'education',
-        'food',
-        'community'
+        "sustainability",
+        "nature",
+        "animal welfare",
+        "housing",
+        "education",
+        "food",
+        "community"
       ],
       event: {
-        id: '',
-        category: '',
-        title: '',
-        description: '',
-        location: '',
-        date: '',
-        time: '',
-        organizer: ''
+        id: "",
+        category: "",
+        title: "",
+        description: "",
+        location: "",
+        date: "",
+        time: "",
+        organizer: ""
       }
-    }
+    };
   },
   methods: {
     onSubmit() {
       const event = {
         ...this.event,
-        id: uuidv4(),
+        id: UniqueID(),
         organizer: this.$store.state.user
-      }
-      this.$store.dispatch('createEvent', event)
+      };
+      this.$store.dispatch("createEvent", event)
         .then(() => {
-          this.showMessage()
+          this.showMessage();
           this.$router.push({
-            name: 'EventDetails',
+            name: "EventDetails",
             params: { id: event.id }
-          })
+          });
         })
         .catch(() => {
-          this.$router.push({ name: 'NetworkError' })
-        })
+          this.$router.push({ name: "NetworkError" });
+        });
     },
     showMessage() {
       this.GStore.flashMessage =
-        'You are successfully added a new event ' + this.event.title
-
+        "You are successfully added a new event " + this.event.title;
       setTimeout(() => {
-        this.GStore.flashMessage = ''
+        this.GStore.flashMessage = "";
       }, 3000);
     }
-  }
+  },
 }
 </script>
+
+<style>
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+</style>

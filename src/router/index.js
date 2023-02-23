@@ -12,6 +12,7 @@ import EventService from '@/services/EventService.js'
 
 import GStore from '@/store/GStore.js'
 import EventCreate from '@/views/EventCreate.vue'
+import isLoggedIn from '@/services/authorization.js'
 
 const routes = [
   {
@@ -65,7 +66,7 @@ const routes = [
         path: 'edit',
         name: 'EventEdit',
         component: EventEdit,
-        meta: { requireAuth: true }
+        meta: { requiresAuth: true }
       }
     ]
   },
@@ -113,13 +114,13 @@ const router = createRouter({
 
 // Start the progress bar before navigation
 router.beforeEach((to, from) => {
-  console.log('beforeEach before start()')
   NProgress.start()
-  console.log('beforeEach after start()')
 
+  const isAuthorized = isLoggedIn()
 
-  const notAuthorized = true
-  if (to.meta.requireAuth && notAuthorized) {
+  console.log(isAuthorized)
+
+  if (to.meta.requiresAuth && !isAuthorized) {
     GStore.flashMessage =
       'Sorry, you are not authorized to view this page'
 
@@ -138,9 +139,7 @@ router.beforeEach((to, from) => {
 
 // Finish the progress bar after navigation
 router.afterEach(() => {
-  console.log('afterEach before done()')
   NProgress.done()
-  console.log('afterEach after done()')
 
 })
 
