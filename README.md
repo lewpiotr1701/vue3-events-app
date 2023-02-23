@@ -1,5 +1,11 @@
 # Events App
 
+## Project Specification
+
+- Fetch events using Axios
+- Create, edit and delete event using Axios
+- Pagination
+
 ## Project setup
 ```
 npm install
